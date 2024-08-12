@@ -17,19 +17,25 @@ class Teste:
         self.page.on_view_pop = self.view_pop
         self.page.go(self.page.route)
     
-    def close_drawer(self, e, route):
+    def close_drawer(self, e=None):
         self.drawer.open = False
         self.page.update()
-        self.page.go(route)
 
     def menu_setup(self):
         self.drawer = ft.NavigationDrawer(
+            open=False,
             controls=[
                 ft.FilledTonalButton(
                     "Visit Store"
                     , icon=ft.icons.STORE
-                     , on_click=lambda e: self.close_drawer(e, "/store")
+                     , on_click=lambda e: self.page.go("/store")
                 )
+                , ft.FilledTonalButton(
+                    "Nova View"
+                    , icon=ft.icons.STACKED_BAR_CHART
+                     , on_click=lambda e: self.page.go("/novaview")
+                )
+
 #                 , ft.ElevatedButton(
 #                     "Visit Store"
 #                     , icon=ft.icons.STORE
@@ -148,12 +154,24 @@ class Teste:
                     ]
                 )
             )
+        elif self.page.route == "/novaview":
+            self.page.views.append(
+                ft.View(
+                    "/novaview",
+                    [
+                        ft.AppBar(title=ft.Text("Nova View"), bgcolor=ft.colors.SURFACE_VARIANT)
+                        , ft.ElevatedButton("Go Home", on_click=lambda _: self.page.go("/"))
+                    ]
+                )
+            )
         self.page.update()
         
     def view_pop(self, view):
-        self.page.views.pop()
-        top_view = self.page.views[-1]
-        self.page.go(top_view.route)
+        if  self.page.views:
+            self.page.views.pop()
+            if self.page.views:
+                top_view = self.page.views[-1]
+            self.page.go(top_view.route)
         
 #     def build_appbar(self):
 #         self.appbar_items = [
