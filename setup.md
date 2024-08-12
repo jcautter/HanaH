@@ -6,6 +6,9 @@ python -m venv .env
 - Activate Virtual Env
 .\.env\Scripts\activate
 
+- Deactivate Virtual Env
+deactivate
+
 - Installing modules
 pip install flet
 
