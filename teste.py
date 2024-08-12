@@ -12,7 +12,7 @@ class Teste:
     def page_setup(self):
         self.menu_setup()
         
-        self.page.title = "Routes Example"
+        self.page.title = "Routes Example..."
         self.page.on_route_change = self.route_change
         self.page.on_view_pop = self.view_pop
         self.page.go(self.page.route)
@@ -106,14 +106,14 @@ class Teste:
                 , [
                     #self.nav_rail
                     ft.VerticalDivider(width=1)
-                    , ft.Column([ ft.Text("Body!")], alignment=ft.MainAxisAlignment.START, expand=True)
+                    , ft.Column([ ft.Text("Body!!!")], alignment=ft.MainAxisAlignment.START, expand=True)
                     , ft.ElevatedButton(
                         "Visit Store"
                         , on_click=lambda _: self.page.go("/store")
                     )
                 ]
                 , appbar = ft.AppBar(
-                    title=ft.Text("Flet app")
+                    title=ft.Text("Flet app 2")
                     , bgcolor=ft.colors.SURFACE_VARIANT
 #                     , actions=[
 #                         ft.IconButton(ft.icons.WB_SUNNY_OUTLINED)
