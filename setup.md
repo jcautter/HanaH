@@ -26,6 +26,7 @@ git pull https://github.com/jcautter/Hanah.git
 
 - Links
 https://flet-controls-gallery.fly.dev/navigation
+https://flet.dev/docs/controls
 
 ## Prerequisites
 
