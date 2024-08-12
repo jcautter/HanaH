@@ -21,6 +21,7 @@ git add .
 git commit -m "Teste"
 git remote add origin https://github.com/jcautter/Hanah.git
 git git push -u https://github.com/jcautter/Hanah.git
+git pull https://github.com/jcautter/Hanah.git
 
 
 - Links
