@@ -5,40 +5,46 @@ def main(page):
     page.add(
         ft.Card(
             content=ft.Container(
-                content=ft.Column(
+                content=ft.Row(
                     [
-                        ft.Row(
-                            [
-                                ft.Image(
-                                    src=f"img/batata.png",
-                                    width=150,
-                                    height=150,
-                                    fit=ft.ImageFit.FILL
-                                )
-                                , ft.Column(
-                                    [
-                                        ft.ListTile(
-                                            title=ft.Text("Batata Frita Grande"),
-                                            subtitle=ft.Text(
-                                                "Servida com maionese de bacon"
+                        ft.Image(
+                            src=f"img/batata.png",
+                            width=150,
+                            height=150,
+                            fit=ft.ImageFit.FILL
+                        ),
+                        ft.Container(
+                            content=ft.Column(
+                                [
+                                    ft.ListTile(
+                                        title=ft.Text("Batata Frita Grande"),
+                                        subtitle=ft.Text(
+                                            "Servida com maionese de bacon"
+                                        ),
+                                    ),
+                                    ft.Row(
+                                        [
+                                            ft.Container(
+                                                content=ft.Text("R$20,00", color=ft.colors.BLUE_500),
+                                                alignment=ft.alignment.center_left
                                             ),
-                                        )
-                                        ,ft.Row(
-                                            [
-                                                ft.TextButton("Adicionar ao Pedido"),
-                                                ft.Text("Valor=R$20")
-                                            ]
-                                        )
-                                        
-                                    ]
-                                )
-                            ]
-
-                        )  
-                    ]
-                )
-                #, width=300
-                , padding=5
+                                            ft.Container(
+                                                content=ft.TextButton("Adicionar ao Pedido"),
+                                                alignment=ft.alignment.center_right
+                                            )
+                                        ]
+                                        , alignment = ft.MainAxisAlignment.SPACE_BETWEEN
+                                    )
+                                ],
+                                alignment=ft.MainAxisAlignment.START,
+                                spacing=5
+                            ),
+                            expand=True
+                        )
+                    ],
+                    alignment=ft.MainAxisAlignment.START
+                ),
+                padding=5
             )
         )
     )
