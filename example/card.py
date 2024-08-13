@@ -7,43 +7,38 @@ def main(page):
             content=ft.Container(
                 content=ft.Column(
                     [
-                        ft.ListTile(
-                            leading=ft.Icon(ft.icons.ALBUM),
-                            title=ft.Text("The Enchanted Nightingale"),
-                            subtitle=ft.Text(
-                                "Music by Julie Gable. Lyrics by Sidney Stein."
-                            ),
-                        ),
                         ft.Row(
-                            [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                            alignment=ft.MainAxisAlignment.END,
-                        ),
+                            [
+                                ft.Image(
+                                    src=f"img/batata.png",
+                                    width=150,
+                                    height=150,
+                                    fit=ft.ImageFit.FILL
+                                )
+                                , ft.Column(
+                                    [
+                                        ft.ListTile(
+                                            title=ft.Text("Batata Frita Grande"),
+                                            subtitle=ft.Text(
+                                                "Servida com maionese de bacon"
+                                            ),
+                                        )
+                                        ,ft.Row(
+                                            [
+                                                ft.TextButton("Adicionar ao Pedido"),
+                                                ft.Text("Valor=R$20")
+                                            ]
+                                        )
+                                        
+                                    ]
+                                )
+                            ]
+
+                        )  
                     ]
                 )
-                , width=400
-                , padding=10
-            )
-        )
-        , ft.Card(
-            content=ft.Container(
-                content=ft.Column(
-                    [
-                        ft.ListTile(
-                            leading=ft.Icon(ft.icons.ALBUM),
-                            title=ft.Text("Bla ble"),
-                            subtitle=ft.Text(
-                                "MDSkskjied."
-                            ),
-                        ),
-                        ft.Row(
-                            [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                            alignment=ft.MainAxisAlignment.END,
-                        ),
-                    ]
-                )
-                , width=200
-                , height=200
-                , padding=10
+                #, width=300
+                , padding=5
             )
         )
     )
