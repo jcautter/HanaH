@@ -52,6 +52,7 @@ def main(page):
                     'img/Bebida.jpg'
                     ,'Suco de Laranja'+str(i)
                     ,'Com ou Sem açúcar'+str(i)
+                    ,'Suco de Laranja Concentrado'
                     ,'R${i},00'.format(i=i)
                     ,'Adicionar ao Pedido'
                 )
