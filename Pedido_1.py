@@ -1,63 +1,91 @@
 import flet as ft
+from meta_class.ItemCardapio import ItemCardapio
 
 def main(page):
     page.title = "Detalhes do Pedido"
 
-    def show_item_details(item):
-        counter = ft.Text(value="1", text_align=ft.TextAlign.CENTER)
+    def show_order_details(item: ItemCardapio):
+        quantity = 1
+        item_value = float(item._props['item_value'].replace("R$", "").replace(",", "."))
 
-        def add_quantity(e):
-            counter.value = str(int(counter.value) + 1)
-            counter.update()
+        quantity_text = ft.Text(value="1", style="headlineMedium")
+        total_value_text = ft.Text(f"R${item_value:.2f}", style="bodyMedium")
 
-        def reduce_quantity(e):
-            if int(counter.value) > 1:
-                counter.value = str(int(counter.value) - 1)
-                counter.update()
+        def update_quantity(change):
+            nonlocal quantity
+            quantity += change
+            if quantity < 1:
+                quantity = 1
+            quantity_text.value = str(quantity)
+            total_value_text.value = f"R${item_value * quantity:.2f}"
+            page.update()
 
-        item_details = ft.Container(
+        card = ft.Container(
             content=ft.Column(
-                controls=[
-                    ft.Image(src=item["image"], fit=ft.ImageFit.COVER, height=250),
-                    ft.Text(item["name"], style="headlineMedium", text_align=ft.TextAlign.CENTER),
-                    ft.Text(item["description"], text_align=ft.TextAlign.CENTER),
+                [
+                    ft.Image(
+                        src=item._props['img_path'],
+                        width=page.window_width,
+                        height=page.window_height * 0.4, 
+                        fit=ft.ImageFit.COVER,
+                    ),
+                    ft.Text(
+                        item._props['title'],
+                        style="headlineLarge",
+                        text_align=ft.TextAlign.LEFT,
+                    ),
+                    ft.Text(
+                        item._props['subtitle'],
+                        style="bodyMedium",
+                        text_align=ft.TextAlign.LEFT,
+                    ),
+                    ft.Container(expand=True),
                     ft.Row(
                         controls=[
                             ft.Row(
                                 controls=[
-                                    ft.IconButton(ft.icons.REMOVE, on_click=reduce_quantity),
-                                    counter,
-                                    ft.IconButton(ft.icons.ADD, on_click=add_quantity),
+                                    ft.IconButton(ft.icons.REMOVE, on_click=lambda _: update_quantity(-1)),
+                                    quantity_text,
+                                    ft.IconButton(ft.icons.ADD, on_click=lambda _: update_quantity(1)),
                                 ],
                                 alignment=ft.MainAxisAlignment.START,
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                             ),
-                            ft.ElevatedButton("Confirmar Pedido", on_click=lambda e: print("Pedido Confirmado")),
+                            ft.Column(
+                                [
+                                    ft.Text("Total:", style="bodyMedium"),
+                                    total_value_text
+                                ],
+                                alignment=ft.MainAxisAlignment.END,
+                            ),
+                            ft.ElevatedButton(
+                                text="Confirmar Pedido",
+                                on_click=lambda _: print("Pedido Confirmado!"),
+                                style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)),
+                            ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    )
+                    ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                spacing=15,
+                width=page.window_width * 0.9,
                 expand=True,
-                spacing=20
             ),
             padding=20,
-            border_radius=ft.BorderRadius(15, 15, 15, 15),
-            bgcolor=ft.colors.GREY_500,
-            expand=True,
+            expand=True
         )
 
         page.controls.clear()
-        page.add(item_details)
+        page.add(card)
         page.update()
 
-    item_example = {
-        "image": "img/Principal.jpg",
-        "name": "Filé Mignon",
-        "description": "Acompanhado com arroz e batata frita",
-    }
+    example_item = ItemCardapio(
+        'img/Principal.jpg',
+        'Filé Mignon',
+        'Acompanhado com arroz e batata frita',
+        'R$45,00',
+        'Adicionar ao Pedido'
+    )
 
-    show_item_details(item_example)
+    show_order_details(example_item)
 
 ft.app(target=main)
