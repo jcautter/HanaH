@@ -54,7 +54,7 @@ def main(page):
                             text_align=ft.TextAlign.LEFT,
                         ),
                         ft.Text(
-                            item._props['description'],
+                            'Filé Mignon mal ou bem passado, acompanhado com arroz e batata frita ou purê de batata',
                             style="bodyMedium",
                             text_align=ft.TextAlign.LEFT,
                         ),
@@ -107,7 +107,6 @@ def main(page):
         'img/Principal.jpg',
         'Filé Mignon',
         'Acompanhado com arroz e batata frita',
-        'Filé Mignon mal ou bem passado, acompanhado com arroz e batata frita ou purê de batata',
         'R$45,00',
         'Adicionar ao Pedido'
     )

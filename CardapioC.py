@@ -7,6 +7,10 @@ from meta_class.ItemCardapio import ItemCardapio
 def main(page):
     page.title = "Cardapio"
 
+    page.window_width=360
+    page.window_height=640
+    page.window_resizable = False
+
     # menu = ft.Row(
     #     spacing=20,
     #     alignment=ft.MainAxisAlignment.CENTER,

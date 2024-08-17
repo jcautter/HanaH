@@ -1,12 +1,11 @@
 import flet as ft
 
 class ItemCardapio(ft.Card):
-    def __init__(self, img_path:str, title:str, subtitle:str, description:str, item_value:str, btn_text:str, btn_action=None, img_size:tuple=(150,150)):
+    def __init__(self, img_path:str, title:str, subtitle:str, item_value:str, btn_text:str, btn_action=None, img_size:tuple=(150,150)):
         self._props = {
             'img_path': img_path
             , 'title': title
             , 'subtitle': subtitle
-            , 'description' : description
             , 'item_value': item_value
             , 'btn_text': btn_text
             , 'btn_action': btn_action
