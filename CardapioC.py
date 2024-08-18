@@ -53,12 +53,14 @@ def main(page):
         for i in range(j*10, j*10+10):
             cardapio._add_item(
                 ItemCardapio(
-                    'img/Bebida.jpg'
-                    ,'Suco de Laranja'+str(i)
-                    ,'Com ou Sem açúcar'+str(i)
-                    ,'Suco de Laranja Concentrado'
-                    ,'R${i},00'.format(i=i)
-                    ,'Adicionar ao Pedido'
+                    **{
+                        'img_path': 'img/Bebida.jpg'
+                        , 'title': 'Suco de Laranja'+str(i)
+                        , 'subtitle': 'Com ou Sem açúcar'+str(i)
+                        , 'item_value': 'R${i},00'.format(i=i)
+                        , 'btn_text': 'Pedir'
+                        , 'btn_action': None
+                    }
                 )
             )
             

@@ -103,8 +103,18 @@ class Teste:
 #         self.build_appbar()
         
         self.page.update()
-        
+    
     def route_change(self, route):
+        print(route.page.views)
+        print('/store' in [v.route for v in route.page.views])
+        print(list(filter(lambda r: r.route=='/store', route.page.views)))
+        print()
+        print()
+        print(route.route)
+        print()
+        print()
+        print()
+        print()
         self.page.views.clear()
         self.page.views.append(
             ft.View(
@@ -170,8 +180,7 @@ class Teste:
         if  self.page.views:
             self.page.views.pop()
             if self.page.views:
-                top_view = self.page.views[-1]
-            self.page.go(top_view.route)
+                self.page.go(self.page.views[-1].route)
         
 #     def build_appbar(self):
 #         self.appbar_items = [
