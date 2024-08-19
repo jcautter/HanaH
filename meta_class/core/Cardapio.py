@@ -1,5 +1,5 @@
 import flet as ft
-import ItemCardapio
+from meta_class.core.ItemCardapio import ItemCardapio
 
 class Cardapio(ft.Column):
     def __init__(self):

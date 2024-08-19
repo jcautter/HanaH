@@ -1,9 +1,10 @@
 import flet as ft
-from meta_class.ViewRootOld import ViewRootOld
+from meta_class.ViewRoot import ViewRoot
+from meta_class.ViewPedido import ViewPedido
 from meta_class.ViewStore import ViewStore
 from meta_class.ViewNovaview import ViewNovaview
 
-class Teste:
+class Hanah:
     def __init__(self, page: ft.Page):
         self.page = page
         self.build()
@@ -11,7 +12,7 @@ class Teste:
 
     
     def page_setup(self):
-        self.page.title = "Routes Example..."
+        self.page.title = "HanaH"
         self.page.on_route_change = self.route_change
         self.page.on_view_pop = self.view_pop
         self.page.window.width=360
@@ -19,7 +20,7 @@ class Teste:
         self.page.window.resizable = False
         self.page.go('/')
 
-    def build(self):        
+    def build(self):
         self.page.update()
     
     def route_change(self, route):
@@ -33,7 +34,9 @@ class Teste:
             #     case "/novaview":
             #         route.page.views.append(ViewNovaview())
             if route.route == '/':
-                route.page.views.append(ViewRootOld())
+                route.page.views.append(ViewRoot())
+            elif route.route == "/pedido":
+                route.page.views.append(ViewPedido())
             elif route.route == "/store":
                 route.page.views.append(ViewStore())
             elif route.route == "/novaview":
@@ -52,7 +55,7 @@ class Teste:
         
 def main(page: ft.Page):
     # app = Teste(page)
-    Teste(page)
+    Hanah(page)
     
 ft.app(
     target=main

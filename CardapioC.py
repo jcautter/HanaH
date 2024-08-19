@@ -1,8 +1,8 @@
 import flet as ft
 
-from meta_class.Cardapio import Cardapio
-from meta_class.MenuCardapio import MenuCardapio
-from meta_class.ItemCardapio import ItemCardapio
+from meta_class.core.Cardapio import Cardapio
+from meta_class.core.MenuCardapio import MenuCardapio
+from meta_class.core.ItemCardapio import ItemCardapio
 
 def main(page):
     page.title = "Cardapio"
