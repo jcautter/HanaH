@@ -20,7 +20,7 @@ class ViewOrder(ft.View):
 
     def _build_controls(self):
         
-        pedido = Pedido(
+        pedido = Order(
             **{
                 'img_path': 'img/Principal.jpg'
                 , 'title': 'Filé Mignon'

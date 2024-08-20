@@ -1,7 +1,7 @@
 import flet as ft
 
-from meta_class.core.Cardapio import Cardapio
-from meta_class.core.MenuCardapio import MenuCardapio
+from meta_class.core.Catalog import Cardapio
+from meta_class.core.MenuCatalog import MenuCardapio
 from meta_class.core.ProductCatalog import ProductCatalog
 
 def main(page):
