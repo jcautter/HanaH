@@ -1,17 +1,23 @@
 import flet as ft
 
-class MenuCardapio(ft.Row):
-    def __init__(self, cardapio):
+from config.common import (Route, Language, Terms)
+
+class MenuCatalog(ft.Row):
+    def __init__(self, page, catalog):
         super().__init__(
             spacing=20
             , alignment=ft.MainAxisAlignment.CENTER
             , scroll=ft.ScrollMode.AUTO
         )
+        self.___page = page
         self._btns=[]
-        self._cardapio = cardapio
+        self._catalog = catalog
+
+    def _get_lang(self):
+        return self.___page.client_storage.get("user")['lang']
 
     def _scroll_to_title(self, key:str, duration=500):
-        self._cardapio.scroll_to(key=key, duration=duration)
+        self._catalog.scroll_to(key=key, duration=duration)
 
     def _check_btn(self, btn):
         while btn in self._btns:

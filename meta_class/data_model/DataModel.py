@@ -29,7 +29,10 @@ class DataModel:
             
         for k in props:
             if not hasattr(self, self._prefix_name.format(name=k)):
-                setattr(self, self._prefix_name.format(name=k), None)
+                if k == 'list':
+                    setattr(self, self._prefix_name.format(name=k), [])
+                else:
+                    setattr(self, self._prefix_name.format(name=k), None)
     
     def _get(self, key:str):
         if hasattr(self, self._prefix_name.format(name=key)):
@@ -59,3 +62,29 @@ class DataModel:
                 "Property does not exist: {prop}".format(prop=key)
                 , DataWarning
             )
+
+    def _append(self, key, val):
+        if hasattr(self, self._prefix_name.format(name=key)):
+            if type(val) == self.__props[key]:
+                self._get(key).append(val)
+            else:
+                warnings.warn(
+                    "Property has a different type: {prop} must be {type_prop}".format(
+                        prop=key
+                        , type_prop=str(
+                            str(self.__props[key]).replace("<class '", '').replace("'>", '')
+                        )
+                    )
+                    , DataTypeWarning
+                )
+        else:
+            warnings.warn(
+                "Property does not exist: {prop}".format(prop=key)
+                , DataWarning
+            )
+
+    def _get_dict(self):
+        doc = {}
+        for k in self.__props.keys():
+            doc[k] = self._get(k)
+        return doc

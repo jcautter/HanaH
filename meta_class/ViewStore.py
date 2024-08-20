@@ -1,9 +1,12 @@
 import flet as ft
 
+from config.common import (Route, Language, Terms)
+
 class ViewStore(ft.View):
-    def __init__(self):
+    def __init__(self, page):
         route = '/store'
         super().__init__(route=route)
+        self.___page = page
         self._buid()
 
     def _buid(self):

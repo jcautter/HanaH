@@ -1,10 +1,10 @@
 from meta_class.data_model.DataModel import DataModel
 
-class DataModelProductMenu(DataModel):
+class DataModelProduct(DataModel):
     def __init__(self, **kwargs):
         super().__init__(
             props={
-                '_id': int
+                '_id': str
                 , 'name': str
                 , 'short_description': str
                 , 'description': str

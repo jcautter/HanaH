@@ -1,6 +1,6 @@
 from meta_class.data.Data import Data
 
-class DataMenu(Data):
+class DataCatalog(Data):
     ____data = []
     
     def __init__(self):

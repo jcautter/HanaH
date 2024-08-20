@@ -1,6 +1,8 @@
 import flet as ft
 
-class Pedido(ft.Container):
+from config.common import (Route, Language, Terms)
+
+class Order(ft.Container):
 
     def __init__(self, img_path:str, title:str, description:str, item_value:float, quantity:int=1):
         super().__init__()
@@ -118,8 +120,8 @@ class Pedido(ft.Container):
                  self._quantity_control
                 , self._total
                 , ft.ElevatedButton(
-                    text="Pedir"
-                    , on_click=lambda _: print("Pedido realizado!")
+                    text="Confirmar"
+                    , on_click=lambda e: print(e.page.client_storage.get("user"))
                     , style=ft.ButtonStyle(
                         shape=ft.RoundedRectangleBorder(radius=8)
                     )

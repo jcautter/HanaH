@@ -1,9 +1,12 @@
 import flet as ft
 
+from config.common import (Route, Language, Terms)
+
 class ViewNovaview(ft.View):
-    def __init__(self):
+    def __init__(self, page):
         route = '/novaview'
         super().__init__(route=route)
+        self.___page = page
         self._buid()
 
     def _buid(self):

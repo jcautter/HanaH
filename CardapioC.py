@@ -2,7 +2,7 @@ import flet as ft
 
 from meta_class.core.Cardapio import Cardapio
 from meta_class.core.MenuCardapio import MenuCardapio
-from meta_class.core.ItemCardapio import ItemCardapio
+from meta_class.core.ProductCatalog import ProductCatalog
 
 def main(page):
     page.title = "Cardapio"
@@ -52,7 +52,7 @@ def main(page):
         cardapio._add_title(txt)
         for i in range(j*10, j*10+10):
             cardapio._add_item(
-                ItemCardapio(
+                ProductCatalog(
                     **{
                         'img_path': 'img/Bebida.jpg'
                         , 'title': 'Suco de Laranja'+str(i)

@@ -1,16 +1,22 @@
 import flet as ft
 
-from meta_class.core.Cardapio import Cardapio
-from meta_class.core.MenuCardapio import MenuCardapio
-from meta_class.core.ItemCardapio import ItemCardapio
+from config.common import (Route, Language, Terms)
 
-from meta_class.data_model.DataModelMenu import DataModelMenu
+from meta_class.core.Catalog import Catalog
+from meta_class.core.MenuCatalog import MenuCatalog
+from meta_class.core.ProductCatalog import ProductCatalog
+
+from meta_class.data_model.DataModelCatalog import DataModelCatalog
 
 class ViewRoot(ft.View):
-    def __init__(self):
+    def __init__(self, page):
         super().__init__()
-        self.route = '/'
+        self.___page = page
+        self.route = Route.ROOT
         self._buid()
+    
+    def _get_lang(self):
+        return self.___page.client_storage.get("user")['lang']
 
     def _buid(self):
         self._build_controls()
@@ -19,68 +25,40 @@ class ViewRoot(ft.View):
         self._build_appbar()
 
     def _page_go_from_navigation_bar(self, e, route):
-        print('teste')
         e.page.go(route)
 
     def _build_controls(self):
-        cardapio = Cardapio()
-        menu = MenuCardapio(cardapio)
+        catalog = Catalog(self.___page)
+        menu = MenuCatalog(self.___page, catalog)
         
-        category_txt = None
-        data = DataModelMenu()
-        for i in data._get('data'):
-            if category_txt != i['category']:
-                category_txt = i['category']
-                menu._add_item(category_txt)
-                cardapio._add_title(category_txt)
+        category = None
+        data_catalog = DataModelCatalog()
+        for product in data_catalog._get('list'):
+            if category != product._get('category'):
+                category = product._get('category')
+                menu._add_item(category)
+                catalog._add_title(category)
 
-            cardapio._add_item(
-                ItemCardapio(
+            catalog._add_item(
+                ProductCatalog(
                     **{
-                        **i
+                        'page': self.___page
+                        , 'product': product
                         , 'btn_action': self._page_go_from_navigation_bar
                     }
                 )
             )
-
-
-        # for j in range(10):
-        #     txt = 'Bebidas'+str(j)
-        #     menu._add_item(txt)
-        #     cardapio._add_title(txt)
-        #     for i in range(j*10, j*10+10):
-        #         cardapio._add_item(
-        #             ItemCardapio(
-        #                 **{
-        #                     'img_path': 'img/Bebida.jpg'
-        #                     , 'name': 'Suco de Laranja'+str(i)
-        #                     , 'short_description': 'Com ou Sem açúcar'+str(i)
-        #                     , 'value': 40+i
-        #                     , 'btn_action': self._page_go_from_navigation_bar
-        #                 }
-        #             )
-        #         )
-
-
-
         self.controls = [
             menu
-            , cardapio
-        ]    
-        # self.controls = [
-        #     ft.VerticalDivider(width=1)
-        #     , ft.Column([ ft.Text("Body!!!")], alignment=ft.MainAxisAlignment.START, expand=True)
-        #     , ft.ElevatedButton(
-        #         "Visit Store"
-        #         , on_click=lambda e: e.page.go("/store")
-        #     ) 
-        # ]
-    
+            , catalog
+        ]   
+
     def _build_appbar(self):
         self.appbar = ft.AppBar(
             title=ft.Text("Flet app 2")
             , bgcolor=ft.colors.SURFACE_VARIANT
         )
+
     def _page_go_from_drawer(self, e, route):
         # e.page.close(e.page.views[-1].drawer)
         e.page.go(route)
@@ -92,12 +70,12 @@ class ViewRoot(ft.View):
                 ft.FilledTonalButton(
                     "Visit Store"
                     , icon=ft.icons.STORE
-                     , on_click=lambda e: self._page_go_from_drawer(e, "/store")
+                    , on_click=lambda e: self._page_go_from_drawer(e, Route.STORE)
                 )
                 , ft.FilledTonalButton(
                     "Nova View"
                     , icon=ft.icons.STACKED_BAR_CHART
-                     , on_click=lambda e: self._page_go_from_drawer(e, "/novaview")
+                     , on_click=lambda e: self._page_go_from_drawer(e, Route.NOVAVIEW)
                 )
                 , ft.NavigationDrawerDestination(
                     icon=ft.icons.ADD_TO_HOME_SCREEN_SHARP
@@ -116,17 +94,17 @@ class ViewRoot(ft.View):
                 ft.NavigationBarDestination(
                         icon=ft.icons.FOOD_BANK_OUTLINED
                         , selected_icon=ft.icons.FOOD_BANK
-                        , label="Cardapio"
+                        , label=Terms.CATALOG[self._get_lang()]
                 )
                 , ft.NavigationBarDestination(
                     icon=ft.icons.BOOKMARK_OUTLINE
                     , selected_icon=ft.icons.BOOKMARK
-                    , label="Pedidos"
+                    , label=Terms.ORDERS[self._get_lang()]
                 )
                 , ft.NavigationBarDestination(
                     icon=ft.icons.AIRPORT_SHUTTLE_OUTLINED
                     , selected_icon=ft.icons.AIRPORT_SHUTTLE
-                    , label="Preparados"
+                    , label=Terms.ORDERS_READY[self._get_lang()]
                 )
             ]
         )

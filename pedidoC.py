@@ -1,5 +1,5 @@
 import flet as ft
-from meta_class.core.Pedido import Pedido
+from meta_class.core.Order import Order
 
 
 
