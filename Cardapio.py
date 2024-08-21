@@ -114,7 +114,6 @@ def main(page):
         controls=sections,
     )
 
-    # Adiciona o menu e a lista de categorias à página
     page.add(ft.Column([
         menu,
         list_view

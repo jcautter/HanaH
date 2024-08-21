@@ -50,7 +50,7 @@ def main(page):
                 ft.Text(f"Cliente: {pedido['cliente']}", style="headlineSmall", color=ft.colors.BLUE_500),
                 ft.Text("Pedido:", style="headlineSmall", color=ft.colors.BLUE_500),
                 ft.Column(
-                    controls=[ft.Text(item, style="bodyBig", color=ft.colors.AMBER_500) for item in pedido['itens']],
+                    controls=[ft.Text(item, style="bodyBig", color=ft.colors.BLUE_GREY_500) for item in pedido['itens']],
                     spacing=5
                 ),
             ],
