@@ -45,18 +45,21 @@ class DataModel:
         
     def _set(self, key:str, val):
         if hasattr(self, self._prefix_name.format(name=key)):
-            if type(val) == self.__props[key]:
-                setattr(self, self._prefix_name.format(name=key), val)
-            else:
-                warnings.warn(
-                    "Property has a different type: {prop} must be {type_prop}".format(
-                        prop=key
-                        , type_prop=str(
-                            str(self.__props[key]).replace("<class '", '').replace("'>", '')
+            if val is not None:
+                if type(val) == dict and issubclass(self.__props[key], DataModel):
+                    setattr(self, self._prefix_name.format(name=key), self.__props[key](**val))
+                elif type(val) == self.__props[key]:
+                    setattr(self, self._prefix_name.format(name=key), val)
+                else:
+                    warnings.warn(
+                        "Property has a different type: {prop} must be {type_prop}".format(
+                            prop=key
+                            , type_prop=str(
+                                str(self.__props[key]).replace("<class '", '').replace("'>", '')
+                            )
                         )
+                        , DataTypeWarning
                     )
-                    , DataTypeWarning
-                )
         else:
             warnings.warn(
                 "Property does not exist: {prop}".format(prop=key)
@@ -86,5 +89,8 @@ class DataModel:
     def _get_dict(self):
         doc = {}
         for k in self.__props.keys():
-            doc[k] = self._get(k)
+            if issubclass(self.__props[k], DataModel):
+                doc[k] = self._get(k)._get_dict()
+            else:
+                doc[k] = self._get(k)
         return doc

@@ -2,18 +2,35 @@ import flet as ft
 
 from config.common import (Route, Language, Terms)
 
+from meta_class.data_model.DataModelOrder import DataModelOrder
+from meta_class.data_model.DataModelWaiter import DataModelWaiter
+
 class Order(ft.Container):
 
-    def __init__(self, img_path:str, title:str, description:str, item_value:float, quantity:int=1):
+    def __init__(self, page:ft.Page, quantity:int=1, img_size:tuple=(None,200)):
         super().__init__()
+        self.___page = page
+        order:DataModelOrder = DataModelOrder(
+             **{
+                  'product': self.___page.session.get('product')
+                  , 'quantity': quantity
+                  , 'waiter': DataModelWaiter(login='gar1')
+             }
+        )
         self._props = {
-            'img_path': img_path
-            , 'title': title
-            , 'description': description
-            , 'item_value': item_value
-            , 'quantity': quantity
+            'order': order
+            , 'img_size': img_size
+
+            # , 'img_path': img_path
+            # , 'title': title
+            # , 'description': description
+            # , 'item_value': item_value
+            # , 'quantity': quantity
         }
         self._build()
+
+    def _get_lang(self):
+        return self.___page.client_storage.get("user")['lang']
     
     def _build(self):
         self._build_cover()
@@ -38,13 +55,16 @@ class Order(ft.Container):
             # e.page.go(e.page.views[-1].route)
 
     def _update_quantity(self, e, change):
-            if self._props['quantity'] + change < 1:
-                self._props['quantity'] = 1
+            if self._props['order']._get('quantity') + change < 1:
+                self._props['order']._set('quantity', 1)
             else:
-                self._props['quantity'] += change
+                self._props['order']._set(
+                     'quantity'
+                     , self._props['order']._get('quantity') + change
+                )
             
-            self._quantity.value = str(self._props['quantity'])
-            self._total.value = f"R${self._props['item_value'] * self._props['quantity']:.2f}"
+            self._quantity.value = str(self._props['order']._get('quantity'))
+            self._total.value = f"R${self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
             e.page.update()
 
     def _build_cover(self):
@@ -54,10 +74,9 @@ class Order(ft.Container):
                 alignment=ft.Alignment(0, -1)
                 , controls=[
                     ft.Image(
-                        src=self._props['img_path']
+                        src=self._props['order']._get('product')._get('img_path')
                         , height=200
                         , fit=ft.ImageFit.COVER
-                        , 
                     ),
                     ft.Container(
                         content=ft.IconButton(
@@ -76,21 +95,21 @@ class Order(ft.Container):
 
     def _build_title(self):
         self._title = ft.Text(
-            self._props['title'],
+            self._props['order']._get('product')._get('name'),
             style="headlineLarge",
             text_align=ft.TextAlign.LEFT,
         )
 
     def _build_description(self):
         self._description = ft.Text(
-            self._props['description'],
+            self._props['order']._get('product')._get('description'),
             style="bodyMedium",
             text_align=ft.TextAlign.LEFT,
         )
 
     def _build_quanty(self):
         self._quantity = ft.Text(
-            value=str(self._props['quantity'])
+            value=str(self._props['order']._get('quantity'))
             # , style="headlineMedium"
         )
     
@@ -106,7 +125,15 @@ class Order(ft.Container):
         )
 
     def _build_total(self):
-        self._total = ft.Text(f"R$ {(self._props['item_value'] * self._props['quantity']):.2f}", style="bodyMedium")
+        self._total = ft.Text(
+            "R$ {val:.2f}".format(
+                val = (
+                    self._props['order']._get('product')._get('value') 
+                    * self._props['order']._get('quantity')
+                )
+            )
+            , style="bodyMedium"
+        )
 
     def _bulid_bottom(self):
         self._build_quanty()

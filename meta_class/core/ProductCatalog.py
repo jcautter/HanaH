@@ -5,21 +5,11 @@ from config.common import (Route, Language, Terms)
 from meta_class.data_model.DataModelProduct import DataModelProduct
 
 class ProductCatalog(ft.Card):
-    def __init__(
-            self, page, product:DataModelProduct, btn_action=None, img_size:tuple=(150,150)
-        ):
+    def __init__(self, page, product:DataModelProduct, btn_action=None, img_size:tuple=(150,150)):
         self._props = {
             'product': product
             , 'btn_action': btn_action
             , 'img_size': img_size
-
-            # 'img_path': img_path
-            # , 'name': name
-            # , 'short_description': short_description
-            # , 'value': "R$ {val:.2f}".format(val=value)
-            # , 'btn_text': btn_text
-            # , 'btn_action': btn_action
-            # , 'img_size': img_size
         }
         super().__init__()
         self.___page = page

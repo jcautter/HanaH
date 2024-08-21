@@ -22,11 +22,12 @@ class ViewOrder(ft.View):
         
         pedido = Order(
             **{
-                'img_path': 'img/Principal.jpg'
-                , 'title': 'Filé Mignon'
-                , 'description': 'Filé Mignon mal ou bem passado, acompanhado com arroz e batata frita ou purê de batata'
-                , 'item_value': 49.90
-                , 'quantity': 1
+                'page': self.___page
+                # 'img_path': 'img/Principal.jpg'
+                # , 'title': 'Filé Mignon'
+                # , 'description': 'Filé Mignon mal ou bem passado, acompanhado com arroz e batata frita ou purê de batata'
+                # , 'item_value': 49.90
+                # , 'quantity': 1
             }
         )
         self.controls = [
