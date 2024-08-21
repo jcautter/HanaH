@@ -1,8 +1,10 @@
 import flet as ft
 from meta_class.ItemCardapio import ItemCardapio
 
-class MenuCardapio(ft.Row):
-    def __init__(self, cardapio):
+from config.common import (Route, Language, Terms)
+
+class MenuCatalog(ft.Row):
+    def __init__(self, page, catalog):
         super().__init__(
             spacing=20,
             alignment=ft.MainAxisAlignment.CENTER,

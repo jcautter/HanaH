@@ -1,11 +1,15 @@
 import flet as ft
 
-from meta_class.Cardapio import Cardapio
-from meta_class.MenuCardapio import MenuCardapio
-from meta_class.ItemCardapio import ItemCardapio
+from meta_class.core.Catalog import Cardapio
+from meta_class.core.MenuCatalog import MenuCardapio
+from meta_class.core.ProductCatalog import ProductCatalog
 
 def main(page):
     page.title = "Cardapio"
+
+    page.window_width=360
+    page.window_height=640
+    page.window_resizable = False
 
     # menu = ft.Row(
     #     spacing=20,
@@ -48,13 +52,15 @@ def main(page):
         cardapio._add_title(txt)
         for i in range(j*10, j*10+10):
             cardapio._add_item(
-                ItemCardapio(
-                    'img/Bebida.jpg'
-                    ,'Suco de Laranja'+str(i)
-                    ,'Com ou Sem açúcar'+str(i)
-                    ,'Suco de Laranja Concentrado'
-                    ,'R${i},00'.format(i=i)
-                    ,'Adicionar ao Pedido'
+                ProductCatalog(
+                    **{
+                        'img_path': 'img/Bebida.jpg'
+                        , 'title': 'Suco de Laranja'+str(i)
+                        , 'subtitle': 'Com ou Sem açúcar'+str(i)
+                        , 'item_value': 'R${i},00'.format(i=i)
+                        , 'btn_text': 'Pedir'
+                        , 'btn_action': None
+                    }
                 )
             )
             

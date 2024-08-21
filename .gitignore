@@ -9,4 +9,4 @@ temp/
 
 __pycache__/
 example/__pycache__/
-smeta_class/__pycache__/
+meta_class/__pycache__/
