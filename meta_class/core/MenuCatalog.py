@@ -1,5 +1,5 @@
 import flet as ft
-from meta_class.ItemCardapio import ItemCardapio
+# from meta_class.ItemCardapio import ItemCardapio
 
 from config.common import (Route, Language, Terms)
 
@@ -10,8 +10,9 @@ class MenuCatalog(ft.Row):
             alignment=ft.MainAxisAlignment.CENTER,
             scroll=ft.ScrollMode.AUTO
         )
+        self.___page = page
         self._btns = []
-        self._cardapio = cardapio
+        self._cardapio = catalog
         
         self.search_bar = ft.SearchBar(
             view_elevation=4,
@@ -25,7 +26,10 @@ class MenuCatalog(ft.Row):
         )
         
         self.controls.append(self.search_bar)
-        self._original_controls = {section.key: section.controls[:] for section in cardapio.controls}
+        self._original_controls = {section.key: section.controls[:] for section in catalog.controls}
+
+    def _get_lang(self):
+        return self.___page.client_storage.get("user")['lang']
 
     def _scroll_to_title(self, key: str, duration=500):
         self._cardapio.scroll_to(key=key, duration=duration)
