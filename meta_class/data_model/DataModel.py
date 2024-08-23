@@ -94,3 +94,7 @@ class DataModel:
             else:
                 doc[k] = self._get(k)
         return doc
+    
+    def _populate_list_of(self, data_model):
+        for product in self._get_data():
+            self._append('list', data_model(**product))

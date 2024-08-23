@@ -1,14 +1,14 @@
 from meta_class.data_model.DataModel import DataModel
-from meta_class.data.DataWaiter import DataWaiter
 
-class DataModelCliente(DataModel, DataWaiter):
+class DataModelClient(DataModel):
     def __init__(self, **kwargs):
         super().__init__(
             props={
                 '_id': str
                 , 'name': str
-                , 'company': str
+                , 'cpf': str
+                , 'associate_number': str
+
             }
         )
-        if 'login' in kwargs:
-            self._filter_prop(self._get_data(kwargs['login']))
+        self._filter_prop(kwargs)

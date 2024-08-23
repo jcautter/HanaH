@@ -10,5 +10,4 @@ class DataModelCatalog(DataModel, DataCatalog):
             }
         )
         self._filter_prop(kwargs)
-        for product in self._get_data():
-            self._append('list', DataModelProduct(**product))
+        self._populate_list_of(DataModelProduct)
