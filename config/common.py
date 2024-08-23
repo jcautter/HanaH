@@ -20,3 +20,4 @@ class Terms:
     CONCLUDE        = {'pt-br': 'Concluído',        'en-us': 'Conclude'}
     BACK            = {'pt-br': 'Voltar',           'en-us': 'Back'}
     Next            = {'pt-br': 'Próximo',          'en-us': 'Próximo'}
+    SEARCH          = {'pt-br': 'Procura',          'en-us': 'Search'}

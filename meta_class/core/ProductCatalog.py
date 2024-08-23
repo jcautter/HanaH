@@ -54,13 +54,18 @@ class ProductCatalog(ft.Card):
                     ft.Row(
                         [
                             ft.Container(
-                                content=ft.Text("R$ {val:.2f}".format(val =self._props['product']._get('value')), color=ft.colors.BLUE_500)
+                                content=ft.Text(
+                                    "R$ {val:.2f}".format(
+                                        val = self._props['product']._get('value')
+                                    )
+                                    , color=ft.colors.BLUE_500
+                                )
                                 , alignment=ft.alignment.center_left
                             )
                             , ft.Container(
                                 content=ft.TextButton(
                                     Terms.ASK[self._get_lang()]
-                                    , on_click=lambda e: self._go_order(e) #self._props['btn_action'](e, Route.ORDER)
+                                    , on_click=lambda e: self._go_order(e)
                                 )
                                 , alignment=ft.alignment.center_right
                             )
