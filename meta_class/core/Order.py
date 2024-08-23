@@ -75,7 +75,7 @@ class Order(ft.Container):
                 , controls=[
                     ft.Image(
                         src=self._props['order']._get('product')._get('img_path')
-                        , height=200
+                        , height=self._props['img_size'][1] # 200
                         , fit=ft.ImageFit.COVER
                     ),
                     ft.Container(
@@ -148,7 +148,7 @@ class Order(ft.Container):
                 , self._total
                 , ft.ElevatedButton(
                     text="Confirmar"
-                    , on_click=lambda e: print(e.page.client_storage.get("user"))
+                    , on_click=lambda e: print(self._props['order']._get_dict())
                     , style=ft.ButtonStyle(
                         shape=ft.RoundedRectangleBorder(radius=8)
                     )
