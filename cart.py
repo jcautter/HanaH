@@ -1,9 +1,9 @@
-from meta_class.data_model.DataModelCart import DataModelCart
-from meta_class.data_model.DataModelWaiter import DataModelWaiter
-from meta_class.data_model.DataModelClient import DataModelClient
+from data_model.DataModelCart import DataModelCart
+from data_model.DataModelWaiter import DataModelWaiter
+from data_model.DataModelClient import DataModelClient
 
-from meta_class.data_model.DataModelOrder import DataModelOrder
-from meta_class.data_model.DataModelProduct import DataModelProduct
+from data_model.DataModelOrder import DataModelOrder
+from data_model.DataModelProduct import DataModelProduct
 
 from datetime import datetime
 

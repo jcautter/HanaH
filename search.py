@@ -1,11 +1,11 @@
 import flet as ft
 
-from meta_class.core.ClientSearch import ClientSearch
+from core.CoreClientSearch import CoreClientSearch
 
 def main(page: ft.Page):
     page.title = "Autocomplete search names"
     page.add(
-        ClientSearch(page)
+        CoreClientSearch(page)
     )
     from datetime import datetime
     print(type(datetime.now().isoformat(timespec='minutes')))
