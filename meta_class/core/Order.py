@@ -4,6 +4,7 @@ from config.common import (Route, Language, Terms)
 
 from meta_class.data_model.DataModelOrder import DataModelOrder
 from meta_class.data_model.DataModelWaiter import DataModelWaiter
+from meta_class.data_model.DataModelCart import DataModelCart
 
 class Order(ft.Container):
 
@@ -147,11 +148,27 @@ class Order(ft.Container):
                  self._quantity_control
                 , self._total
                 , ft.ElevatedButton(
-                    text="Confirmar"
-                    , on_click=lambda e: print(self._props['order']._get_dict())
+                    text=Terms.ADD_CART[self._get_lang()]
+                    , on_click=lambda e: self._add_cart(e)
                     , style=ft.ButtonStyle(
                         shape=ft.RoundedRectangleBorder(radius=8)
                     )
                 )
             ]
         )
+
+    def _add_cart(self, e):
+        cart = DataModelCart()
+        if self.___page.session.contains_key('cart'):
+            cart = DataModelCart(**self.___page.session.get('cart'))
+        cart._append('list', self._props['order'])
+        self.___page.session.set('cart', cart._get_dict())
+        print(cart._get_dict())
+        # self.___page.go(Route.ROOT)
+        self._view_pop(self.___page.views[-1])
+
+    def _view_pop(self, view):
+        if view.page.views:
+            view.page.views.pop()
+            if view.page.views:
+                view.page.go(self.page.views[-1].route)

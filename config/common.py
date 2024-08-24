@@ -22,3 +22,4 @@ class Terms:
     Next            = {'pt-br': 'Próximo',          'en-us': 'Próximo'}
     SEARCH          = {'pt-br': 'Procura',          'en-us': 'Search'}
     CART            = {'pt-br': 'Carrinho',         'en-us': 'Cart'}
+    ADD_CART        = {'pt-br': 'Adicionar',        'en-us': 'Add cart'}
