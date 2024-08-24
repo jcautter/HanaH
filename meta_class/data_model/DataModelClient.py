@@ -8,7 +8,7 @@ class DataModelClient(DataModel):
                 , 'name': str
                 , 'cpf': str
                 , 'associate_number': str
-
+                , 'email': str
             }
         )
         self._filter_prop(kwargs)

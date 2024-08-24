@@ -42,25 +42,21 @@ class DataModel:
                 "Property does not exist: {prop}".format(prop=key)
                 , DataWarning
             )
-    
+        
     def _set(self, key:str, val):
         if hasattr(self, self._prefix_name.format(name=key)):
             if val is not None:
                 if key == 'list':
-                    if type(val) is list:
-                        if issubclass(self.__props[key], DataModel):
-                            setattr(
-                                self
-                                , self._prefix_name.format(name=key)
-                                , [self.__props[key](**o) if type(o) is dict else o for o in val]
-                            )
-                        else:
-                            setattr(self, self._prefix_name.format(name=key), val)
+                    if issubclass(self.__props[key], DataModel) and type(val) is list:
+                        print('oi')
+                        print(val)
+                        setattr(
+                            self
+                            , self._prefix_name.format(name=key)
+                            , [self.__props[key](**o) if type(val) is dict else o for o in val]
+                        )
                     else:
-                        if type(val) == dict and issubclass(self.__props[key], DataModel):
-                            setattr(self, self._prefix_name.format(name=key), self.__props[key](**val))
-                        elif type(val) == self.__props[key]:
-                            setattr(self, self._prefix_name.format(name=key), val)
+                        setattr(self, self._prefix_name.format(name=key), val)
                 elif type(val) == dict and issubclass(self.__props[key], DataModel):
                     setattr(self, self._prefix_name.format(name=key), self.__props[key](**val))
                 elif type(val) == self.__props[key]:

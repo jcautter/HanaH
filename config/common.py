@@ -21,3 +21,4 @@ class Terms:
     BACK            = {'pt-br': 'Voltar',           'en-us': 'Back'}
     Next            = {'pt-br': 'Próximo',          'en-us': 'Próximo'}
     SEARCH          = {'pt-br': 'Procura',          'en-us': 'Search'}
+    CART            = {'pt-br': 'Carrinho',         'en-us': 'Cart'}
