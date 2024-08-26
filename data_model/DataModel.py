@@ -124,5 +124,5 @@ class DataModel:
         return doc
     
     def _populate_list_of(self, data_model):
-        for product in self._get_data():
-            self._append('list', data_model(**product))
+        for obj in self._get_data():
+            self._append('list', data_model(**obj))

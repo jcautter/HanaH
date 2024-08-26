@@ -6,7 +6,7 @@ from core.CoreCatalog import CoreCatalog
 from core.CoreCatalogMenu import CoreCatalogMenu
 from core.CoreCatalogProduct import CoreCatalogProduct
 
-from data_model.DataModelCatalog import DataModelCatalog
+from data_model.DataModelProducts import DataModelProducts
 
 class ViewRoot(
     Core
@@ -32,7 +32,7 @@ class ViewRoot(
         menu = CoreCatalogMenu(self.page___, catalog)
         
         category = None
-        data_catalog = DataModelCatalog()
+        data_catalog = DataModelProducts()
         for product in data_catalog._get('list'):
             if category != product._get('category'):
                 category = product._get('category')

@@ -11,6 +11,8 @@ deactivate
 
 - Installing modules
 pip install flet
+pip install pandas
+pip install neo4j
 
 - Run
 python teste.py

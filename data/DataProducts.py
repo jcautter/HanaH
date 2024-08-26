@@ -1,6 +1,6 @@
 from data.Data import Data
 
-class DataClients(Data):
+class DataProducts(Data):
     def __init__(self):
         super().__init__()
 
@@ -11,17 +11,20 @@ class DataClients(Data):
             , *['Company']
         )
         self.cp.custom_query_add_node(
-            'client'
-            , *['Client']
+            'product'
+            , *['Product']
         )
         self.cp.custom_query_add_relationship(
-            'client'
+            'product'
             , 'company'
             , 'r'
-            , 'CLIENT_OF'
+            , 'CATALOG_OF'
+            , **{
+                'status': 'active'
+            }
         )
 
-        self.cp.custom_query_action_return('client')
+        self.cp.custom_query_action_return('product')
 
         records, summary, keys = self.cp.build_and_execute_custom_query()
 

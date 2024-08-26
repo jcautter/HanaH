@@ -1,8 +1,8 @@
 from data_model.DataModel import DataModel
-from data.DataCatalog import DataCatalog
+from data.DataProducts import DataProducts
 from data_model.DataModelProduct import DataModelProduct
 
-class DataModelCatalog(DataModel, DataCatalog):
+class DataModelProducts(DataModel, DataProducts):
     def __init__(self, **kwargs):
         super().__init__(
             props={
