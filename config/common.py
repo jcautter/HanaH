@@ -20,3 +20,6 @@ class Terms:
     CONCLUDE        = {'pt-br': 'Concluído',        'en-us': 'Conclude'}
     BACK            = {'pt-br': 'Voltar',           'en-us': 'Back'}
     Next            = {'pt-br': 'Próximo',          'en-us': 'Próximo'}
+    SEARCH          = {'pt-br': 'Procura',          'en-us': 'Search'}
+    CART            = {'pt-br': 'Carrinho',         'en-us': 'Cart'}
+    ADD_CART        = {'pt-br': 'Adicionar',        'en-us': 'Add cart'}

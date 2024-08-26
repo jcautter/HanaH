@@ -1,25 +1,17 @@
 import flet as ft
-
-from config.common import (Route, Language, Terms)
-
-from data_model.DataModelUser import DataModelUser
-
-from view.ViewRoot import ViewRoot
-from view.ViewOrder import ViewOrder
+from meta_class.ViewRootOld import ViewRootOld
 from view.ViewStore import ViewStore
 from view.ViewNovaview import ViewNovaview
 
-class Hanah:
+class Teste:
     def __init__(self, page: ft.Page):
         self.page = page
         self.build()
         self.page_setup()
-        usr = DataModelUser(login='gar1')
-        usr._push_cokies(self.page)
 
     
     def page_setup(self):
-        self.page.title = "HanaH"
+        self.page.title = "Routes Example..."
         self.page.on_route_change = self.route_change
         self.page.on_view_pop = self.view_pop
         self.page.window.width=360
@@ -27,27 +19,25 @@ class Hanah:
         self.page.window.resizable = False
         self.page.go('/')
 
-    def build(self):
+    def build(self):        
         self.page.update()
     
     def route_change(self, route):
         search_route = list(filter(lambda r: r.route==route.route, route.page.views))
         if not search_route:
             # match route.route:
-            #     case Route.ROOT:
+            #     case '/':
             #         route.page.views.append(ViewRoot())
-            #     case Route.ORDER:
+            #     case "/store":
             #         route.page.views.append(ViewStore())
-            #     case Route.NOVAVIEW:
+            #     case "/novaview":
             #         route.page.views.append(ViewNovaview())
-            if route.route == Route.ROOT:
-                route.page.views.append(ViewRoot(self.page))
-            elif route.route == Route.ORDER:
-                route.page.views.append(ViewOrder(self.page))
-            elif route.route == Route.STORE:
-                route.page.views.append(ViewStore(self.page))
-            elif route.route == Route.NOVAVIEW:
-                route.page.views.append(ViewNovaview(self.page))
+            if route.route == '/':
+                route.page.views.append(ViewRootOld())
+            elif route.route == "/store":
+                route.page.views.append(ViewStore())
+            elif route.route == "/novaview":
+                route.page.views.append(ViewNovaview())
         else:
             route.page.views.remove(search_route[0])
             route.page.views.append(search_route[0])
@@ -62,7 +52,7 @@ class Hanah:
         
 def main(page: ft.Page):
     # app = Teste(page)
-    Hanah(page)
+    Teste(page)
     
 ft.app(
     target=main
