@@ -1,6 +1,7 @@
 class Route:
     ROOT = '/'
     ORDER = '/order'
+    CART = '/cart'
     STORE = '/store'
     NOVAVIEW = '/novaview'
 

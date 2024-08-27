@@ -16,9 +16,9 @@ class ViewRoot(
         Core.__init__(self, page)
         ft.View.__init__(self)
         self.route = self.ROUTE.ROOT
-        self._buid()
+        self._build()
 
-    def _buid(self):
+    def _build(self):
         self._build_controls()
         self._build_draer()
         self._build_navigation_bar()
@@ -72,9 +72,9 @@ class ViewRoot(
                     , on_click=lambda e: self._page_go_from_drawer(e, self.ROUTE.STORE)
                 )
                 , ft.FilledTonalButton(
-                    "Nova View"
+                    "Carrinho"
                     , icon=ft.icons.STACKED_BAR_CHART
-                     , on_click=lambda e: self._page_go_from_drawer(e, self.ROUTE.NOVAVIEW)
+                     , on_click=lambda e: self._page_go_from_drawer(e, self.ROUTE.CART)
                 )
                 , ft.NavigationDrawerDestination(
                     icon=ft.icons.ADD_TO_HOME_SCREEN_SHARP

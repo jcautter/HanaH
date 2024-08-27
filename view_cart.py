@@ -5,7 +5,7 @@ def main(page: ft.Page):
     page.title = "Carrinho de Compras com Pesquisa"
 
     search = CoreClientSearch(page)
-    
+     
     cart_items = [
         {
             'name': 'Item 1',

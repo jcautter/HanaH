@@ -157,9 +157,4 @@ class CoreOrder(Core, ft.Container):
             cart = DataModelCart(**self.page___.session.get('cart'))
         cart._append('list', self._props['order'])
         self.page___.session.set('cart', cart._get_dict())
-        
-        
-        print(cart._get_dict())
-        
-        
         self._view_pop()

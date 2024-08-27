@@ -8,6 +8,7 @@ from view.ViewRoot import ViewRoot
 from view.ViewOrder import ViewOrder
 from view.ViewStore import ViewStore
 from view.ViewNovaview import ViewNovaview
+from view.ViewCart import ViewCart
 
 class Hanah:
     def __init__(self, page: ft.Page):
@@ -44,6 +45,8 @@ class Hanah:
                 route.page.views.append(ViewRoot(self.page))
             elif route.route == Route.ORDER:
                 route.page.views.append(ViewOrder(self.page))
+            elif route.route == Route.CART:
+                route.page.views.append(ViewCart(self.page))
             elif route.route == Route.STORE:
                 route.page.views.append(ViewStore(self.page))
             elif route.route == Route.NOVAVIEW:

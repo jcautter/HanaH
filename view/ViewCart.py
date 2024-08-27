@@ -1,12 +1,13 @@
 import flet as ft
 
 from core.Core import Core
+from core.CoreCart import CoreCart
 
-class ViewStore(Core, ft.View):
-    def __init__(self, page):
+class ViewCart(Core, ft.View):
+    def __init__(self, page:ft.Page):
         Core.__init__(self, page)
-        ft.View.__init__(self)
-        self.route = self.ROUTE.STORE
+        route = self.ROUTE.CART
+        ft.View.__init__(self, route=route)
         self._build()
 
     def _build(self):
@@ -15,14 +16,12 @@ class ViewStore(Core, ft.View):
 
     def _build_controls(self):
         self.controls = [
-            ft.ElevatedButton(
-                "Go Home"
-                , on_click=lambda e: self._view_pop()
-            )
+            CoreCart(self.page___)
         ]
+
 
     def _build_appbar(self):
         self.appbar = ft.AppBar(
-            title=ft.Text("Store")
+            title=ft.Text(self.TERMS.CART[self._get_lang()])
             , bgcolor=ft.colors.SURFACE_VARIANT
         )
