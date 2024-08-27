@@ -58,14 +58,14 @@ class CoreCatalogProduct(Core, ft.Card):
                                     )
                                     , color=ft.colors.BLUE_500
                                 )
-                                , alignment=ft.alignment.center_left
+                                , alignment=ft.alignment.bottom_left
                             )
                             , ft.Container(
                                 content=ft.TextButton(
                                     self.TERMS.ASK[self._get_lang()]
                                     , on_click=lambda e: self._go_order(e)
                                 )
-                                , alignment=ft.alignment.center_right
+                                , alignment=ft.alignment.bottom_center
                             )
                         ]
                         , alignment = ft.MainAxisAlignment.SPACE_BETWEEN
