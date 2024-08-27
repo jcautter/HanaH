@@ -6,8 +6,6 @@ from data_model.DataModelCart import DataModelCart
 from data_model.DataModelOrder import DataModelOrder
 
 class CoreCartOrder(Core, ft.Container):
-    _total_text:ft.Text = ft.Text()
-    _total_quantity:ft.Text = ft.Text()
 
     def __init__(self, page:ft.Page, cart, order:DataModelOrder):
         Core.__init__(self, page)
@@ -24,6 +22,7 @@ class CoreCartOrder(Core, ft.Container):
         }
         self._build()
 
+
     def _update_quantity(self, delta):
         qtd = max(0, self._props['order']._get('quantity') + delta)
         if qtd > 0:
@@ -31,37 +30,27 @@ class CoreCartOrder(Core, ft.Container):
                 'quantity'
                 , qtd
             )
+            self._props['cart']._update_cart_on_session(self._props['order'])
             self._total_quantity.value = str(self._props['order']._get('quantity'))
             self._total_text.value = f"R$ {self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
-            self._update_total_cart()
+            self._props['cart']._update_total()
             self.page___.update()
         else:
             self._zero_out_item()
 
     def _zero_out_item(self):
-        if self.page___.session.contains_key('cart'):
-            data_cart = DataModelCart(**self.page___.session.get('cart'))
-        data_cart._set(
-            'list'
-            , data_cart._get('list').remove(self._props['order'])
-        )
-        self.page___.session.set('cart', data_cart._get_dict())
-        self._update_total_cart()
+        self._props['cart']._update_cart_on_session(self._props['order'], remove=True)
+        self._props['cart']._update_total()
         self._props['cart']._remove_item(self)
         self.page___.update()
 
-    def _update_total_cart(self):
-        if self.page___.session.contains_key('cart'):
-            cart = DataModelCart(**self.page___.session.get('cart'))
-
-        total = sum(
-            o._get('quantity') * o._get('product')._get('value')
-            for o in cart._get('list')
-        )
-        self._props['cart']._total_button.text = f"R$ {total:.2f}"
-        self.page___.update()
-
     def _build(self):
+        self._total_text:ft.Text = ft.Text(
+            f"R$ {self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
+        )
+        self._total_quantity:ft.Text = ft.Text(
+            str(self._props['order']._get('quantity'))
+        )
         self.content = ft.Row(
             controls=[
                 ft.Column(

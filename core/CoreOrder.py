@@ -6,16 +6,17 @@ from data_model.DataModelOrder import DataModelOrder
 from data_model.DataModelWaiter import DataModelWaiter
 from data_model.DataModelCart import DataModelCart
 
+from datetime import datetime
+
 class CoreOrder(Core, ft.Container):
 
     def __init__(self, page:ft.Page, quantity:int=1, img_size:tuple=(None,200)):
         Core.__init__(self, page)
         ft.Container.__init__(self)
-        # super().__init__()
-        # self.___page = page
         order:DataModelOrder = DataModelOrder(
             **{
-                'product': self.page___.session.get('product')
+                '_id': datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+                , 'product': self.page___.session.get('product')
                 , 'quantity': quantity
                 , 'waiter': DataModelWaiter(
                     login=self.page___.client_storage.get("user")['login']

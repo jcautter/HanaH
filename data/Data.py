@@ -1,9 +1,9 @@
 from data.Neo4jCypher import Neo4jCypher
 
 class Data:
-    data____:list = []
     cp:Neo4jCypher
     def __init__(self):
+        self.data____:list = []
         self.cp = Neo4jCypher(
             **{
                 'dns': '2f9f5fc0.databases.neo4j.io'
