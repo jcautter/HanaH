@@ -68,6 +68,23 @@ def main(page: ft.Page):
         page.dialog.open = True
         page.update()
 
+    head_button_filled = False
+
+    def toggle_head_button(e):
+        nonlocal head_button_filled
+        head_button_filled = not head_button_filled
+        head_button.bgcolor = ft.colors.BLUE_GREY_400 if head_button_filled else ft.colors.TRANSPARENT
+        page.update()
+
+    head_button = ft.Container(
+        width=20,
+        height=20,
+        border_radius=15,
+        border=ft.border.all(1, ft.colors.BLACK),
+        on_click=toggle_head_button,
+        alignment=ft.alignment.center
+    )
+
     center_container = ft.Container(
         content=ft.Column(
             controls=[
@@ -76,13 +93,14 @@ def main(page: ft.Page):
                 number_field,
                 team_dropdown,
                 checkbox_container,
+                head_button,
                 submit_button,
             ],
             spacing=20,
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER
         ),
-        alignment=ft.Alignment(0, 0),
+        alignment=ft.alignment.center,
         expand=True
     )
 
