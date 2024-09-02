@@ -54,7 +54,7 @@ class CoreCatalogProduct(Core, ft.Card):
                             ft.Container(
                                 content=ft.Text(
                                     "R$ {val:.2f}".format(
-                                        val = self._props['product']._get('value')
+                                        val = self._props['product']._get('price')
                                     )
                                     , color=ft.colors.BLUE_500
                                 )

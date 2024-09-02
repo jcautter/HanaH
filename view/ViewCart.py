@@ -8,6 +8,7 @@ class ViewCart(Core, ft.View):
         Core.__init__(self, page)
         route = self.ROUTE.CART
         ft.View.__init__(self, route=route)
+        self.expand = True
         self._build()
 
     def _build(self):

@@ -102,29 +102,34 @@ def main(page: ft.Page):
         ft.Column(
             controls=[
                 ft.Column(
-                    controls=[card for card, _ in cards],
-                    spacing=10
-                ),
-                search,
-                total_text
-            ],
-            spacing=10,
-            expand=True
-        ),
-        ft.Row(
-            controls=[
-                total_button,
-                ft.Container(
-                    content=ft.ElevatedButton(
-                        text="Enviar Pedido a Cozinha", 
-                        icon="send", 
-                        color=ft.colors.GREEN_500
-                    ),
-                    alignment=ft.alignment.bottom_right,
+                    controls=[
+                        ft.Column(
+                            controls=[card for card, _ in cards],
+                            spacing=10
+                        ),
+                        search,
+                        total_text
+                    ],
+                    spacing=10,
                     expand=True
+                ),
+                ft.Row(
+                    controls=[
+                        total_button,
+                        ft.Container(
+                            content=ft.ElevatedButton(
+                                text="Enviar Pedido a Cozinha", 
+                                icon="send", 
+                                color=ft.colors.GREEN_500
+                            ),
+                            alignment=ft.alignment.bottom_right,
+                            expand=True
+                        )
+                    ],
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                 )
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            ]
+            , expand=True
         )
     )
 

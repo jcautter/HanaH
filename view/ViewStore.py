@@ -14,10 +14,45 @@ class ViewStore(Core, ft.View):
         self._build_appbar()
 
     def _build_controls(self):
+
+        total_text = ft.Text(f"Total: R$ 30.50", weight="bold")
+
+        total_button = ft.OutlinedButton(
+            text=f"Valor Total: R$ 30.50",
+            width=200,
+        )
+
         self.controls = [
-            ft.ElevatedButton(
-                "Go Home"
-                , on_click=lambda e: self._view_pop()
+            ft.Column(
+                controls=[
+                    ft.Column(
+                        controls=[
+                            ft.Column(
+                                controls=None
+                                , spacing=10
+                            )
+                            , total_text
+                        ]
+                        , spacing=10
+                        , expand=True
+                    ),
+                    ft.Row(
+                        controls=[
+                            total_button,
+                            ft.Container(
+                                content=ft.ElevatedButton(
+                                    text="Enviar Pedido a Cozinha", 
+                                    icon="send", 
+                                    color=ft.colors.GREEN_500
+                                ),
+                                alignment=ft.alignment.bottom_right,
+                                expand=True
+                            )
+                        ],
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    )
+                ]
+                , expand=True
             )
         ]
 

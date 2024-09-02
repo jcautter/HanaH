@@ -8,7 +8,7 @@ class DataModelProduct(DataModel):
                 , 'name': str
                 , 'short_description': str
                 , 'description': str
-                , 'value': float
+                , 'price': float
                 , 'img_path': str
                 , 'category': str
             }

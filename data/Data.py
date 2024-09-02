@@ -1,6 +1,8 @@
 from data.Neo4jCypher import Neo4jCypher
+import hashlib
 
 class Data:
+    sha256 = hashlib.sha256
     cp:Neo4jCypher
     def __init__(self):
         self.data____:list = []

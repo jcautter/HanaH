@@ -27,6 +27,7 @@ class CoreOrder(Core, ft.Container):
             'order': order
             , 'img_size': img_size
         }
+        # self.expand=True
         self._build()
     
     def _build(self):
@@ -40,9 +41,10 @@ class CoreOrder(Core, ft.Container):
                  self._cover
                  , self._title
                  , self._description
-                #  , ft.Container(expand=True)
+                 , ft.Container(expand=True)
                  , self._bottom
             ]
+            , expand=True
         )
 
     def _go_back(self, e):
@@ -60,7 +62,7 @@ class CoreOrder(Core, ft.Container):
                 )
             
             self._quantity.value = str(self._props['order']._get('quantity'))
-            self._total.value = f"R${self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
+            self._total.value = f"R${self._props['order']._get('product')._get('price') * self._props['order']._get('quantity'):.2f}"
             e.page.update()
 
     def _build_cover(self):
@@ -124,7 +126,7 @@ class CoreOrder(Core, ft.Container):
         self._total = ft.Text(
             "R$ {val:.2f}".format(
                 val = (
-                    self._props['order']._get('product')._get('value') 
+                    self._props['order']._get('product')._get('price') 
                     * self._props['order']._get('quantity')
                 )
             )

@@ -9,16 +9,22 @@ class DataProducts(Data):
         self.cp.custom_query_add_node(
             'company'
             , *['Company']
+            , **{
+                '_id': self.sha256(bytes(
+                    'Bar do Gomes' + '99999'
+                    , 'utf-8'
+                )).hexdigest()
+            }
         )
         self.cp.custom_query_add_node(
             'product'
             , *['Product']
         )
         self.cp.custom_query_add_relationship(
-            'product'
-            , 'company'
+            'company'
+            , 'product'
             , 'r'
-            , 'CATALOG_OF'
+            , 'PRODUCT_OF'
             , **{
                 'status': 'active'
             }

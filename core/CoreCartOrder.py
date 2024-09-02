@@ -32,7 +32,7 @@ class CoreCartOrder(Core, ft.Container):
             )
             self._props['cart']._update_cart_on_session(self._props['order'])
             self._total_quantity.value = str(self._props['order']._get('quantity'))
-            self._total_text.value = f"R$ {self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
+            self._total_text.value = f"R$ {self._props['order']._get('product')._get('price') * self._props['order']._get('quantity'):.2f}"
             self._props['cart']._update_total()
             self.page___.update()
         else:
@@ -46,7 +46,7 @@ class CoreCartOrder(Core, ft.Container):
 
     def _build(self):
         self._total_text:ft.Text = ft.Text(
-            f"R$ {self._props['order']._get('product')._get('value') * self._props['order']._get('quantity'):.2f}"
+            f"R$ {self._props['order']._get('product')._get('price') * self._props['order']._get('quantity'):.2f}"
         )
         self._total_quantity:ft.Text = ft.Text(
             str(self._props['order']._get('quantity'))

@@ -50,8 +50,8 @@ cp.custom_query_add_node(
 )
 
 cp.custom_query_add_relationship(
-    'n1'
-    , 'company'
+    'company'
+    , 'n1'
     , 'rc1'
     , 'CLIENT_OF'
     , clause='CREATE'
@@ -73,8 +73,8 @@ cp.custom_query_add_node(
 )
 
 cp.custom_query_add_relationship(
-    'n2'
-    , 'company'
+    'company'
+    , 'n2'
     , 'rc2'
     , 'CLIENT_OF'
     , clause='CREATE'
@@ -95,8 +95,8 @@ cp.custom_query_add_node(
 )
 
 cp.custom_query_add_relationship(
-    'n3'
-    , 'company'
+    'company'
+    , 'n3'
     , 'rc3'
     , 'CLIENT_OF'
     , clause='CREATE'
@@ -117,8 +117,8 @@ cp.custom_query_add_node(
 )
 
 cp.custom_query_add_relationship(
-    'n4'
-    , 'company'
+    'company'
+    , 'n4'
     , 'rc4'
     , 'CLIENT_OF'
     , clause='CREATE'
@@ -137,17 +137,17 @@ for i in range(100):
             'name': 'Suco de Laranja'+str(i)
             , 'short_description': 'Com ou Sem açúcar'+str(i)
             , 'description': 'Suco 100% laranja'+str(i)
-            , 'value': float(i)
+            , 'price': float(i)
             , 'img_path': 'https://denorteasulburguer.com.br/wp-content/uploads/2023/03/fritas-grande.png'
             , 'category': 'Bebidas'+str(i//10)
         }
     )
 
     cp.custom_query_add_relationship(
-        'p{i}'.format(i=i)
-        , 'company'
+        'company'
+        , 'p{i}'.format(i=i)
         , 'rp{i}'.format(i=i)
-        , 'CATALOG_OF'
+        , 'PRODUCT_OF'
         , clause='CREATE'
         , **{
             'status': 'active'
